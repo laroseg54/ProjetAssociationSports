@@ -10,18 +10,23 @@ using ProjetAssociationSports.Models;
 using ProjetAssociationSports.dal;
 
 namespace ProjetAssociationSports.Controllers
-{
+{   
+    [RoutePrefix("discipline")]
     public class DisciplineController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Discipline
+        [Route("~/disciplines")]
+        [Route("index")]
         public ActionResult Index()
         {
             return View(db.Disciplines.ToList());
         }
 
-        // GET: Discipline/Details/5
+        // GET: Discipline/Details/5 ou Discipline/5
+        [Route("{id}")]
+        [Route("details/{id}")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +42,7 @@ namespace ProjetAssociationSports.Controllers
         }
 
         // GET: Discipline/Create
+        [Route("create")]
         public ActionResult Create()
         {
             return View();

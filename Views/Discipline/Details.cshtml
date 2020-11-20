@@ -26,7 +26,21 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
+
     </dl>
+
+    <table class="table">
+        <tr>
+            <th></th>
+        </tr>
+
+        @foreach (var Section in Model.Sections)
+        {
+            <tr><td>@Section.Nom</td></tr>
+            <tr><td>@Section.Description</td></tr>
+        }
+
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
