@@ -7,7 +7,7 @@ namespace ProjetAssociationSports.Models
 {
     public class Creneau
     {
-        public Creneau(int sectionID, DayOfWeek jour, TimeSpan heureDeb, TimeSpan heureFin, int nbrPlacesLimite, string idEncandrant)
+        public Creneau(int sectionID, DayOfWeek jour, string heureDeb, string heureFin, int nbrPlacesLimite)
         {
             SectionID = sectionID;
             Jour = jour;
@@ -15,22 +15,23 @@ namespace ProjetAssociationSports.Models
             HeureFin = heureFin;
             NbrPlacesLimite = nbrPlacesLimite;
             NbrPlaceRestantes = nbrPlacesLimite;
-            Adherents = new SortedSet<Adherent>();
-            ApplicationUserID = idEncandrant;
+            Adherents = new List<Adherent>();
+            
         }
+
+        public Creneau() { }
+
 
         public int Id { get; set; }
         public int SectionID { get; set; }
 
         public DayOfWeek Jour { get; set; }
-        public TimeSpan HeureDeb { get; set; }
-        public TimeSpan HeureFin { get; set; }
+        public string HeureDeb { get; set; }
+        public string HeureFin { get; set; }
         public int NbrPlacesLimite { get; set; }
         public int NbrPlaceRestantes { get; set; }
-        public string ApplicationUserID { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual Section Section { get; set; }
-        public virtual SortedSet<Adherent> Adherents { get; set; }
+        public virtual ICollection<Adherent> Adherents { get; set; }
 
 
     }

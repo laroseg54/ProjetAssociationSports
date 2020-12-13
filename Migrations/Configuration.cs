@@ -17,7 +17,11 @@ namespace ProjetAssociationSports.Migrations
 
         protected override void Seed(ProjetAssociationSports.dal.ApplicationDbContext context)
         {
-            var disciplines = new SortedSet<Discipline>
+
+  
+
+
+            var disciplines = new List<Discipline>
             {
 
                 new Discipline("judo","sport de combat japonais, la castagne tout ça tout ça "),
@@ -28,7 +32,7 @@ namespace ProjetAssociationSports.Migrations
 
             disciplines.ForEach(s => context.Disciplines.Add(s));
 
-            var sections = new SortedSet<Section>
+            var sections = new List<Section>
             {
                 new Section(1,"judo compétition","le judo ou ça castagne dure pour gagner des sous blyat",42),
                 new Section(1,"judo loisir","le judo ou ça glande",37),
@@ -36,7 +40,16 @@ namespace ProjetAssociationSports.Migrations
                 new Section(2,"natation loisir","la natation ou ça glande",99),
             };
 
+
             sections.ForEach(s => context.Sections.Add(s));
+
+            var creneaux = new List<Creneau>
+            {
+                new Creneau(1,DayOfWeek.Friday,"14h00","15h30",20)
+
+
+            };
+            creneaux.ForEach(s => context.Creneaux.Add(s));
             context.SaveChanges();
         }
     }

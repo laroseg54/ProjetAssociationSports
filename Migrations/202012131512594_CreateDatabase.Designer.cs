@@ -7,13 +7,13 @@ namespace ProjetAssociationSports.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CreateTable : IMigrationMetadata
+    public sealed partial class CreateDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011112155090_CreateTable"; }
+            get { return "202012131512594_CreateDatabase"; }
         }
         
         string IMigrationMetadata.Source

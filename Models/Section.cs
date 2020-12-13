@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjetAssociationSports.Models
 {
-    public class Section : IComparable<Section>
+    public class Section
     {
 
         public Section(int idDiscipline, string nom, string description, double prix)
@@ -14,6 +14,7 @@ namespace ProjetAssociationSports.Models
             Nom = nom;
             Description = description;
             Prix = prix;
+            Creneaux = new List<Creneau>();
         }
         public Section() { }
 
@@ -23,11 +24,9 @@ namespace ProjetAssociationSports.Models
         public string Description { get; set; }
 
         public double Prix { get; set; }
+        public virtual ICollection<Creneau> Creneaux {get; set;}
         public virtual Discipline Discipline { get; set; }
-        public int CompareTo(Section obj)
-        {
-            return Nom.CompareTo(obj.Nom);
-        }
+   
     }
 
 }

@@ -7,7 +7,7 @@ using ProjetAssociationSports.Models;
 
 namespace ProjetAssociationSports.dal
 {
-   
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -23,7 +23,7 @@ namespace ProjetAssociationSports.dal
 
         public virtual DbSet<Adherent> Adherents { get; set; }
 
-
+        public virtual DbSet<Document> Documents { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

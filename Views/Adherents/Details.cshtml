@@ -1,0 +1,117 @@
+﻿@model ProjetAssociationSports.ViewModels.AdherentDetailsViewModel
+@{
+    var ficheRenseign = from f in Model.Adherent.Documents where f.TypePiece == "FicheRenseignement" select f;
+    var certif = from f in Model.Adherent.Documents where f.TypePiece == "CertifMedicale" select f;
+    var assu = from f in Model.Adherent.Documents where f.TypePiece == "Assurance" select f;
+}
+
+
+
+<h2>Details</h2>
+
+<div>
+    <h4>Adherent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adherent.ResteaPayer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adherent.ResteaPayer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adherent.DateNaissance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adherent.DateNaissance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adherent.NumTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adherent.NumTel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adherent.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adherent.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adherent.Prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adherent.Prenom)
+        </dd>
+
+    </dl>
+    <div id="divDocuments">
+
+        @using (Html.BeginForm("Index", "Documents", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.DocumentViewModel.TypePiece, new { Value = "FicheRenseignement" });
+            @Html.TextBoxFor(model => model.DocumentViewModel.PostedFile, new { type = "file", id = "ficheRenseignement", style = "display : none", onchange = "form.submit()" });
+            <label class=" btn btn-link" id="labelRenseignement" onclick="$(ficheRenseignement).click()">Joindre votre fiche de renseignement remplie et signée</label>
+            if (ficheRenseign.Any())
+            {
+                @:<span class="label label-success">fait</span>
+
+            }
+
+            @Html.ValidationMessageFor(model => model.DocumentViewModel.PostedFile);
+
+        }
+        @using (Html.BeginForm("Index", "Documents", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.DocumentViewModel.TypePiece, new { Value = "CertifMedicale" });
+            @Html.TextBoxFor(model => model.DocumentViewModel.PostedFile, new { type = "file", id = "certifMedical", style = "display : none", onchange = "form.submit()" });
+            <label class=" btn btn-link" id="labelRenseignement" onclick="$(certifMedical).click()">Joindre votre certification médicale </label>
+            if (certif.Any())
+            {
+                <span class="label label-success">fait</span>
+            }
+
+            @Html.ValidationMessageFor(model => model.DocumentViewModel.PostedFile);
+
+        }
+        @using (Html.BeginForm("Index", "Documents", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.DocumentViewModel.TypePiece, new { Value = "Assurance" });
+            @Html.TextBoxFor(model => model.DocumentViewModel.PostedFile, new { type = "file", id = "assurance", style = "display : none", onchange = "form.submit()" });
+            <label class=" btn btn-link" id="labelRenseignement" onclick="$(assurance).click()">Joindre votre assurance</label>
+            if (assu.Any())
+            {
+                <span class="label label-success">fait</span>
+            }
+
+            @Html.ValidationMessageFor(model => model.DocumentViewModel.PostedFile);
+
+        }
+    </div>
+
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Adherent.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

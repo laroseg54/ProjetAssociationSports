@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace ProjetAssociationSports.Models
+namespace ProjetAssociationSports.ViewModels
 {
-    public class Adherent
+    public class AdherentViewModel
     {
-
-      
-
-        [ForeignKey("ApplicationUser")]
-        public string Id { get; set; }
-        public double ResteaPayer { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Date de naissance requise ")]
@@ -27,14 +20,5 @@ namespace ProjetAssociationSports.Models
         public string Nom { get; set; }
         [Required(ErrorMessage = "Vous devez entrer votre prénom ")]
         public string Prenom { get; set; }
-
-
-        public virtual ApplicationUser ApplicationUser { get; set; }
-
-        public virtual ICollection<Creneau> Creneaux { get; set; }
-
-        public virtual ICollection<Document> Documents { get; set; }
-
-
     }
 }
