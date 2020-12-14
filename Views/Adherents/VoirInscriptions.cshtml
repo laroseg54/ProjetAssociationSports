@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ProjetAssociationSports.Models.Creneau>
+@{
+    ViewBag.Title = "VoirInscriptions";
+}
+
+@Html.ActionLink("Retour", "Details")
+<h2>Les créneaux auquels vous êtes inscrits</h2>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Discipline</th>
+            <th scope="col">Section</th>
+            <th scope="col">Jour</th>
+            <th scope="col">Heure de début</th>
+            <th scope="col">Heure de fin</th>
+
+        </tr>
+    </thead>
+    @foreach (var creneau in Model)
+    {
+        <tr scope="row">
+            <td>@creneau.Section.Discipline.Nom</td>
+            <td>@creneau.Section.Nom</td>
+            <td>@creneau.Jour</td>
+            <td>@creneau.HeureDeb</td>
+            <td>@creneau.HeureFin</td>
+            <td></td>
+        </tr>
+    }
+
+</table>
+

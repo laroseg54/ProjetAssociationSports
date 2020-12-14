@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Adherent</h4>
         <hr />
@@ -55,6 +55,9 @@
     </div>
 }
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 <div>
     @Html.ActionLink("Retour", "Details")
 </div>

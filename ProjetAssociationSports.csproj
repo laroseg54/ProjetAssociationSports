@@ -177,7 +177,7 @@
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Controllers\SectionsController.cs" />
     <Compile Include="dal\ApplicationDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -264,15 +264,16 @@
     <Content Include="Views\Discipline\Details.cshtml" />
     <Content Include="Views\Discipline\Edit.cshtml" />
     <Content Include="Views\Discipline\Index.cshtml" />
-    <Content Include="Views\Section\Create.cshtml" />
-    <Content Include="Views\Section\Delete.cshtml" />
-    <Content Include="Views\Section\Details.cshtml" />
-    <Content Include="Views\Section\Edit.cshtml" />
-    <Content Include="Views\Section\Index.cshtml" />
     <Content Include="Views\Adherents\Create.cshtml" />
     <Content Include="Views\Adherents\Details.cshtml" />
     <Content Include="Views\Adherents\Edit.cshtml" />
     <Content Include="Views\Adherents\Index.cshtml" />
+    <Content Include="Views\Sections\Create.cshtml" />
+    <Content Include="Views\Sections\Delete.cshtml" />
+    <Content Include="Views\Sections\Details.cshtml" />
+    <Content Include="Views\Sections\Edit.cshtml" />
+    <Content Include="Views\Sections\Index.cshtml" />
+    <Content Include="Views\Adherents\VoirInscriptions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

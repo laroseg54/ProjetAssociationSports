@@ -68,8 +68,9 @@ namespace ProjetAssociationSports.Controllers
         
         public ActionResult Create([Bind(Include = "DateNaissance,NumTel,Nom,Prenom")] AdherentViewModel adherentViewModel)
         {
-           
-            if (db.Adherents.Any(a => a.Id== User.Identity.GetUserId()))
+
+            string user = User.Identity.GetUserId();
+            if (db.Adherents.Any(a => a.Id == user))
             {
                 return RedirectToAction("Details");
             }
@@ -148,9 +149,13 @@ namespace ProjetAssociationSports.Controllers
             Creneau creneau = db.Creneaux.Find(id);
             Adherent adherent = db.Adherents.Find(User.Identity.GetUserId());
                  
-            if(creneau == null || adherent == null)
+            if(creneau == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest); ;
+                Response.Redirect(Request.UrlReferrer.ToString());
+            }
+            if(adherent == null)
+            {
+                return RedirectToAction("index", "Home");
             }
             else
             {
@@ -161,6 +166,16 @@ namespace ProjetAssociationSports.Controllers
                 return RedirectToAction("Details");
 
             }
+        }
+
+        public ActionResult VoirInscriptions()
+        {
+            Adherent adherent = db.Adherents.Find(User.Identity.GetUserId());
+            if (adherent == null)
+            {
+                return RedirectToAction("create");
+            }
+            return View(adherent.Creneaux);
         }
   
         protected override void Dispose(bool disposing)

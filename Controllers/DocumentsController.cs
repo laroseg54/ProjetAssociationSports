@@ -34,15 +34,24 @@ namespace ProjetAssociationSports.Controllers
                 /*     string filePath = "~/Uploads/Documents/" + ad.Nom + ad.Prenom + "/";*/
                 /*   System.IO.Directory.CreateDirectory(filePath);*/
                 string filePath = "~/Uploads/Documents/";
+                Document d = ad.Documents.FirstOrDefault(d => d.TypePiece == documentViewModel.TypePiece);
+                if (d != null)
+                {
+                  
+                    FileInfo fi = new FileInfo(Server.MapPath(d.Chemin));
+                    fi.Delete();
+                    db.Entry(d).State = EntityState.Deleted;
+                }
+               
                 documentViewModel.PostedFile.SaveAs(Server.MapPath(filePath+fileName));
              
                 Document document = new Document
                 {
-                    Chemin = filePath,
+                    Chemin = filePath+fileName,
                     AdherentID = ad.Id,
                     Nom = documentViewModel.PostedFile.FileName,
                     TypePiece = documentViewModel.TypePiece,
-                    TypeDoc = Path.GetExtension(filePath),
+                    TypeDoc = Path.GetExtension(fileName),
                     Adherent = ad
                 };
                     db.Documents.Add(document);

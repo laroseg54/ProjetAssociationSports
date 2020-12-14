@@ -38,6 +38,7 @@
         {
             <tr><td>@Section.Nom</td></tr>
             <tr><td>@Section.Description</td></tr>
+            <tr><td>@Html.ActionLink("Voir les creneaux","Details","Sections",new { id = Section.Id },null)</td></tr>
         }
 
     </table>

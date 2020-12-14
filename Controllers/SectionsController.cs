@@ -11,18 +11,18 @@ using ProjetAssociationSports.dal;
 
 namespace ProjetAssociationSports.Controllers
 {
-    public class SectionController : Controller
+    public class SectionsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Section
+        // GET: Sections
         public ActionResult Index()
         {
             var sections = db.Sections.Include(s => s.Discipline);
             return View(sections.ToList());
         }
 
-        // GET: Section/Details/5
+        // GET: Sections/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,14 +37,14 @@ namespace ProjetAssociationSports.Controllers
             return View(section);
         }
 
-        // GET: Section/Create
+        // GET: Sections/Create
         public ActionResult Create()
         {
             ViewBag.DisciplineID = new SelectList(db.Disciplines, "Id", "Nom");
             return View();
         }
 
-        // POST: Section/Create
+        // POST: Sections/Create
         // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -62,7 +62,7 @@ namespace ProjetAssociationSports.Controllers
             return View(section);
         }
 
-        // GET: Section/Edit/5
+        // GET: Sections/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,7 +78,7 @@ namespace ProjetAssociationSports.Controllers
             return View(section);
         }
 
-        // POST: Section/Edit/5
+        // POST: Sections/Edit/5
         // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -95,7 +95,7 @@ namespace ProjetAssociationSports.Controllers
             return View(section);
         }
 
-        // GET: Section/Delete/5
+        // GET: Sections/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,7 +110,7 @@ namespace ProjetAssociationSports.Controllers
             return View(section);
         }
 
-        // POST: Section/Delete/5
+        // POST: Sections/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

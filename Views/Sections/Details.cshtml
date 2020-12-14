@@ -10,13 +10,6 @@
     <h4>Section</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Discipline.Nom)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Discipline.Nom)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Nom)
@@ -44,6 +37,29 @@
 
     </dl>
 </div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Jour</th>
+            <th scope="col">Heure de début</th>
+            <th scope="col">Heure de fin</th>
+            <th scope="col">Nombres de places Restantes</th>
+        </tr>
+    </thead>
+    @foreach (var creneau in Model.Creneaux)
+    {
+        <tr scope="row">
+            <td>@creneau.Jour</td>
+            <td>@creneau.HeureDeb</td>
+            <td>@creneau.HeureFin</td>
+            <td>@creneau.NbrPlaceRestantes</td>
+            <td>@Html.ActionLink("S'inscrire","Inscription","Adherents",new {id= creneau.Id}, new { @class = "btn btn-primary" })</td>
+            <td></td>
+        </tr>
+    }
+
+</table>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

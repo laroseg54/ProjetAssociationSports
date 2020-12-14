@@ -14,10 +14,12 @@ namespace ProjetAssociationSports.Models
 
         [ForeignKey("ApplicationUser")]
         public string Id { get; set; }
+        [Display(Name = "Reste à payer")]
         public double ResteaPayer { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Date de naissance requise ")]
+        [Display(Name = "Date de naissance")]
         public DateTime DateNaissance { get; set; }
 
         [Phone]

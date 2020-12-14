@@ -11,6 +11,7 @@ namespace ProjetAssociationSports.ViewModels
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Date de naissance requise ")]
+        [Display(Name = "Date de Naissance")]
         public DateTime DateNaissance { get; set; }
 
         [Phone]
