@@ -54,13 +54,12 @@
             <td>@creneau.HeureDeb</td>
             <td>@creneau.HeureFin</td>
             <td>@creneau.NbrPlaceRestantes</td>
-            <td>@Html.ActionLink("S'inscrire","Inscription","Adherents",new {id= creneau.Id}, new { @class = "btn btn-primary" })</td>
-            <td></td>
+            <td class="myLinks">@Html.ActionLink("S'inscrire","Inscription","Adherents",new {id= creneau.Id}, new { @class = "btn btn-primary" })</td>
         </tr>
     }
 
 </table>
-<p>
+<p class="myLinks">
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

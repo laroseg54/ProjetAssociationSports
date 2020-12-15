@@ -1,36 +1,4 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    background-image: url('/Content/images/image.jpg');
-    font-size: 17px;
-}
-
-#pageAceuil{
-    margin: 30px 30px;
-    font-size:30px;
-}
-
-.myLinks a {
-    color: white;
-}
-#labelRenseignement {
-    color: white;
-    font-size: 18px;
-}
-
-.navbar-brand {
-    position: center;
-    text-align: center;
-    text-decoration: solid;
-    font-size: 30px;
-    text-decoration: underline;
-    color: #1e1d30;
-    position: relative;
-    text-align: center;
-    z-index: 10;
-    -webkit-mask-box-image: -webkit-gradient(linear, left top, left bottom, color-stop(30%,rgb(19, 18, 18)), color-stop(100%,rgba(21, 20, 20, 0)));
-}
-/* Set padding to keep content from hitting the edges */
+﻿/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -49,6 +17,88 @@ select,
 textarea {
     max-width: 280px;
 }
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url('/Content/images/image.jpg');
+    font-size: 17px;
+}
+
+/*Styles de page d'aceuil*/
+#pageAceuil {
+    margin: 30px 30px;
+    font-size: 40px;
+    text-decoration: solid;
+    color: rgb(13, 4, 53);
+    position: relative;
+    -webkit-mask-box-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%,rgb(3, 2, 61)), color-stop(100%,rgba(14, 59, 155, 0)));
+}
+#textIndex {
+    margin: 30px 30px;
+    font-size: 35px;
+    font-family:'Times New Roman', Times, serif;
+    font-style:italic;
+}
+
+/*Styles de liens ActionLink*/
+.myLinks a {
+    color: white;
+}
+
+#labelRenseignement {
+    color: white;
+    font-size: 18px;
+}
+
+/*Styles de logo*/
+.navbar-brand {
+    position: center;
+    text-align: center;
+    text-decoration: solid;
+    font-size: 30px;
+    text-decoration: underline;
+    color: #1e1d30;
+    position: relative;
+    text-align: center;
+    z-index: 10;
+    -webkit-mask-box-image: -webkit-gradient(linear, left top, left bottom, color-stop(30%,rgb(19, 18, 18)), color-stop(100%,rgba(21, 20, 20, 0)));
+
+}
+
+/*Styles de tables dans les sections*/
+.table {
+    table-layout: fixed;
+    width: 900px;
+    border: 2px solid black;
+}
+
+td {
+    border: 1px solid blue;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.section {
+    font-size: 30px;
+    color: black;
+}
+
+#test{
+    font-size: 30px;
+}
+
+/*Le lignes entre les blocks*/
+ #test:after {
+       content: "";
+       display: block;
+       width:  910px;
+       height: 2px;
+       background-color: black;
+       margin-left: -10px;
+    }
+/*Fin de styles de tables*/
 
 /*----------------Style de payement--------*/
 form#paiement {

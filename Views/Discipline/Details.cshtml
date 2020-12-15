@@ -36,14 +36,14 @@
 
         @foreach (var Section in Model.Sections)
         {
-            <tr><td>@Section.Nom</td></tr>
-            <tr><td>@Section.Description</td></tr>
-            <tr><td>@Html.ActionLink("Voir les creneaux","Details","Sections",new { id = Section.Id },null)</td></tr>
+            <tr><td class="section">@Section.Nom</td></tr>
+            <tr><td class="section">@Section.Description</td></tr>
+            <tr><td class="myLinks" id="test">@Html.ActionLink("Voir les creneaux","Details","Sections",new { id = Section.Id },null)</td></tr>
         }
 
     </table>
 </div>
-<p>
+<p class="myLinks">
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

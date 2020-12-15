@@ -4,11 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Disciplines</h2>
 
-<p  class="myLinks">
+@*<p  class="myLinks">
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
+
 <table class="table">
     <tr>
         <th></th>
@@ -16,12 +17,12 @@
 
     @foreach (var item in Model)
     {
-        <tr><td  class="myLinks">@item.Nom,@Html.ActionLink("Voir les sections","Details",new { @item.Id})</td></tr>
-        <tr><td  class="myLinks">@item.Description</td></tr>
+        <tr class="section"><td  class="myLinks">@item.Nom</td></tr>
+        <tr class="section"><td  class="myLinks">@item.Description</td></tr>
+     
         <tr>
-            <td  class="myLinks">
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            <td class="myLinks" id="test">
+                @Html.ActionLink("Voir les sections", "Details", new { @item.Id })
             </td>
         </tr>
     }
