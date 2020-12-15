@@ -37,6 +37,12 @@ namespace ProjetAssociationSports.Controllers
             return View(section);
         }
 
+
+        public ActionResult Payement()
+        {
+            return View();
+        }
+
         // GET: Sections/Create
         public ActionResult Create()
         {

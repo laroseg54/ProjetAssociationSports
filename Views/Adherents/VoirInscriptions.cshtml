@@ -14,6 +14,7 @@
             <th scope="col">Jour</th>
             <th scope="col">Heure de début</th>
             <th scope="col">Heure de fin</th>
+            <th scope="col">Payement</th>
 
         </tr>
     </thead>
@@ -25,6 +26,7 @@
             <td>@creneau.Jour</td>
             <td>@creneau.HeureDeb</td>
             <td>@creneau.HeureFin</td>
+            <td>150euro @Html.ActionLink("Payer", "Payement", "Sections")</td>
             <td></td>
         </tr>
     }

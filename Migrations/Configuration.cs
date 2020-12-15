@@ -18,40 +18,32 @@ namespace ProjetAssociationSports.Migrations
         protected override void Seed(ProjetAssociationSports.dal.ApplicationDbContext context)
         {
 
-  
 
 
-            var disciplines = new List<Discipline>
-            {
+            context.Creneaux.RemoveRange(context.Creneaux);
+            context.Sections.RemoveRange(context.Sections);
+            context.Disciplines.RemoveRange(context.Disciplines);
 
-                new Discipline("judo","sport de combat japonais, la castagne tout Áa tout Áa "),
-                new Discipline("natation","nager dans l'eau Áa fait du bien "),
+            Discipline D1 = new Discipline("judo", "sport de combat japonais, la castagne tout √ßa tout √ßa ");
+            Discipline D2 = new Discipline("natation", "nager dans l'eau √ßa fait du bien ");
 
-
-            };
-
-            disciplines.ForEach(s => context.Disciplines.Add(s));
-
-            var sections = new List<Section>
-            {
-                new Section(1,"judo compÈtition","le judo ou Áa castagne dure pour gagner des sous blyat",42),
-                new Section(1,"judo loisir","le judo ou Áa glande",37),
-                new Section(2,"natation compÈt","la natation ou Áa nage dure pour gagner des sous blyat",88),
-                new Section(2,"natation loisir","la natation ou Áa glande",99),
-            };
-
-
-            sections.ForEach(s => context.Sections.Add(s));
-
-            var creneaux = new List<Creneau>
-            {
-                new Creneau(1,DayOfWeek.Friday,"14h00","15h30",20)
-
-
-            };
-            creneaux.ForEach(s => context.Creneaux.Add(s));
+            context.Disciplines.Add(D1);
+            context.Disciplines.Add(D2);
+            context.SaveChanges();
+            Section S1 = new Section(D1.Id, "judo comp√©tition", "le judo ou √ßa castagne dure pour gagner des sous blyat", 42);
+            context.Sections.Add(S1);
+            Section S2 = new Section(D1.Id, "judo loisir", "le judo ou √ßa glande", 37);
+            context.Sections.Add(S2);
+            Section S3 = new Section(D2.Id, "natation comp√©t", "la natation ou √ßa nage dure pour gagner des sous blyat", 88);
+            context.Sections.Add(S3);
+            Section S4 = new Section(D2.Id, "natation loisir", "la natation ou √ßa glande", 99);
+            context.Sections.Add(S4);
+            context.SaveChanges();
+            Creneau C1 = new Creneau(S1.Id, DayOfWeek.Friday, "14h00", "15h30", 20);
+            context.Creneaux.Add(C1);
+            Creneau C2 = new Creneau(S2.Id, DayOfWeek.Monday, "9h00", "12h00", 60);
+            context.Creneaux.Add(C2);
             context.SaveChanges();
         }
     }
 }
-

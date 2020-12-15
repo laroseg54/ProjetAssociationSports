@@ -1,8 +1,35 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url('/Content/images/image.jpg');
+    font-size: 17px;
 }
 
+#pageAceuil{
+    margin: 30px 30px;
+    font-size:30px;
+}
+
+.myLinks a {
+    color: white;
+}
+#labelRenseignement {
+    color: white;
+    font-size: 18px;
+}
+
+.navbar-brand {
+    position: center;
+    text-align: center;
+    text-decoration: solid;
+    font-size: 30px;
+    text-decoration: underline;
+    color: #1e1d30;
+    position: relative;
+    text-align: center;
+    z-index: 10;
+    -webkit-mask-box-image: -webkit-gradient(linear, left top, left bottom, color-stop(30%,rgb(19, 18, 18)), color-stop(100%,rgba(21, 20, 20, 0)));
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -22,3 +49,132 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*----------------Style de payement--------*/
+form#paiement {
+    background: #6e75da;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 20px;
+    width: 400px;
+}
+
+ form#paiement fieldset {
+        border: none;
+        margin-bottom: 10px;
+   }
+
+ form#paiement fieldset:last-of-type {
+            margin-bottom: 0;
+ }
+
+form#paiement legend {
+        color: #384313;
+        font-size: 16px;
+        font-weight: bold;
+        padding-bottom: 10px;
+        text-shadow: 0 1px 1px #c0d576;
+    }
+    form#paiement > fieldset > legend:before {
+        content: "Étape " counter(fieldsets) " : ";
+        counter-increment: fieldsets;
+    }
+
+    form#paiement ol li {
+        background: #b9cf6a;
+        background: rgba(255,255,255,.3);
+        border-color: #e3ebc3;
+        border-color: rgba(255,255,255,.6);
+        border-style: solid;
+        border-width: 2px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        line-height: 30px;
+        list-style: none;
+        padding: 5px 10px;
+        margin-bottom: 2px;
+    }
+
+    form#paiement ol ol li {
+        background: none;
+        border: none;
+        float: left;
+    }
+
+    form#paiement label {
+        float: left;
+        font-size: 13px;
+        width: 110px;
+    }
+
+    form#paiement fieldset fieldset label {
+        background: none no-repeat left 50%;
+        line-height: 20px;
+        padding: 0 0 0 30px;
+        width: auto;
+    }
+
+    form#paiement label[for=visa] {
+        background-image: url(visa.gif);
+    }
+
+    form#paiement label[for=amex] {
+        background-image: url(amex.gif);
+    }
+
+    form#paiement label[for=mastercard] {
+        background-image: url(mastercard.gif);
+    }
+
+    form#paiement fieldset fieldset label:hover {
+        cursor: pointer;
+    }
+    form#paiement input:not([type=radio]),
+    form#paiement textarea {
+        background: #ffffff;
+        border: none;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -khtml-border-radius: 3px;
+        border-radius: 3px;
+        font: italic 13px Georgia, "Times New Roman", Times, serif;
+        outline: none;
+        padding: 5px;
+        width: 200px;
+    }
+
+        form#paiement input:not([type=submit]):focus,
+        form#paiement textarea:focus {
+            background: #eaeaea;
+        }
+
+    form#paiement input[type=radio] {
+        float: left;
+        margin-right: 5px;
+    }
+    form#paiement button {
+        background: #09da9b;
+        border: none;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -khtml-border-radius: 20px;
+        border-radius: 20px;
+        color: #ffffff;
+        display: block;
+        font: 18px Georgia, "Times New Roman", Times, serif;
+        letter-spacing: 1px;
+        margin: auto;
+        padding: 7px 25px;
+        text-shadow: 0 1px 1px #000000;
+        text-transform: uppercase;
+    }
+
+        form#paiement button:hover {
+            background: #1e2506;
+            cursor: pointer;
+        }
+
+
+/*----------------FIN de Style de payement--------*/
