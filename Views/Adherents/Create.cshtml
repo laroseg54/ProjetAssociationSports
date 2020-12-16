@@ -3,15 +3,20 @@
 @{
     ViewBag.Title = "Create";
 }
-
-<h2>Create</h2>
+@if (@TempData["erreur"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["erreur"]
+    </div>
+}
+<h2>Adhérer à l'association</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Adherent</h4>
+       
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

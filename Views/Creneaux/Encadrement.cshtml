@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ProjetAssociationSports.Models.Creneau>
+@{
+    ViewBag.Title = "Encadrement";
+    var culture = new System.Globalization.CultureInfo("fr-FR");  // pour mettre l'énumération day of week en Francais
+
+
+}
+
+<h2>Les créneaux que vous encandrés</h2>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Discipline</th>
+            <th scope="col">Section</th>
+            <th scope="col">Jour</th>
+            <th scope="col">Heure de début</th>
+            <th scope="col">Heure de fin</th>
+            <th scope="col">Lieu</th>
+            <th scope="col">Nbr inscrits</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    @foreach (var cre in Model)
+    {
+<tr scope="row">
+    <td>@cre.Section.Discipline.Nom</td>
+    <td>@cre.Section.Nom</td>
+    <td>@culture.DateTimeFormat.GetDayName(cre.Jour)</td>
+    <td>@cre.HeureDeb</td>
+    <td>@cre.HeureFin</td>
+    <td>@cre.Lieu</td>
+    <td>@(cre.NbrPlacesLimite-cre.NbrPlaceRestantes)</td>
+    @if ((cre.NbrPlacesLimite - cre.NbrPlaceRestantes) > 0)
+    {
+        //si il y a des personnes inscrites dans ce creneau on permet à l'encadrant d'en voir la liste
+        <td> @Html.ActionLink("Liste des inscrits", "EncadrementInscrits", new { idCreneau = cre.Id })</td>
+    }
+
+</tr>
+    }
+
+</table>

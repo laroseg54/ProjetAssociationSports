@@ -11,7 +11,7 @@ namespace ProjetAssociationSports.Models.CustomValidation
         public override bool IsValid(object value)
         {
             string val = (string)value;
-            if (val == TypePiece.Assurance || val == TypePiece.FicheRenseignement || val == TypePiece.CertifMedicale)
+            if (val == TypePiece.Assurance || val == TypePiece.FicheRenseignement || val == TypePiece.CertifMedicale) // on verifie que le document est bien du type que l'on veut 
             {
                 return true;
             }

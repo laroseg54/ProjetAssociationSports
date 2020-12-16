@@ -33,7 +33,7 @@ namespace ProjetAssociationSports.Models
 
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public virtual ICollection<Creneau> Creneaux { get; set; }
+        public virtual ICollection<CreneauxAdherents> CreneauxAdherents { get; set; }
 
         public virtual ICollection<Document> Documents { get; set; }
 

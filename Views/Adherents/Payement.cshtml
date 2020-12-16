@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<ProjetAssociationSports.Models.Section>
+@model ProjetAssociationSports.Models.CreneauxAdherents
 
 @{
     ViewBag.Title = "Payement";
@@ -51,6 +51,6 @@
     </fieldset>
 
     <fieldset>
-        <button type=submit onclick="alert('Merci pour votre payement')">@Html.ActionLink("Payer", "Index", "Home")</button>
+        <button  onclick="alert('Merci pour votre payement')">@Html.ActionLink("Payer", "Payer",new {idCreneau = Model.CreneauID })</button>
     </fieldset>
 </form>

@@ -1,23 +1,18 @@
 ﻿@model ProjetAssociationSports.Models.Section
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Details";
+    var culture = new System.Globalization.CultureInfo("fr-FR");  // pour mettre l'énumération day of week en Francais
+
+
 }
 
-<h2>Details</h2>
 
 <div>
-    <h4>Section</h4>
+    <h1 class="display-1">@Html.DisplayFor(model => model.Nom)</h1>
     <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nom)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nom)
-        </dd>
+    <dl>
 
         <dt>
             @Html.DisplayNameFor(model => model.Description)
@@ -32,34 +27,58 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Prix)
+            @Html.DisplayFor(model => model.Prix) euros
         </dd>
 
     </dl>
 </div>
-
+<h4>Creneaux disponibles : </h4>
 <table class="table">
     <thead class="thead-dark">
         <tr>
             <th scope="col">Jour</th>
             <th scope="col">Heure de début</th>
             <th scope="col">Heure de fin</th>
+            <th scope="col">Lieu</th>
             <th scope="col">Nombres de places Restantes</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     @foreach (var creneau in Model.Creneaux)
     {
-        <tr scope="row">
-            <td>@creneau.Jour</td>
-            <td>@creneau.HeureDeb</td>
-            <td>@creneau.HeureFin</td>
-            <td>@creneau.NbrPlaceRestantes</td>
-            <td class="myLinks">@Html.ActionLink("S'inscrire","Inscription","Adherents",new {id= creneau.Id}, new { @class = "btn btn-primary" })</td>
-        </tr>
+
+<tr scope="row">
+    <td> @culture.DateTimeFormat.GetDayName(creneau.Jour)</td>
+    <td>@creneau.HeureDeb</td>
+    <td>@creneau.HeureFin</td>
+    <td>@creneau.Lieu</td>
+    <td>@creneau.NbrPlaceRestantes</td>
+
+    @if (creneau.CreneauxAdherents.FirstOrDefault(ca => User.Identity.GetUserId() == ca.AdherentID) == null)
+    // On regarde si l'utilisateur n'est pas déja inscrit dans le créneaux
+    {
+
+        if (creneau.NbrPlaceRestantes == 0)
+        {
+            <td><span class="label label-warning">Plus de places restantes</span></td>
+        }
+        else
+        {
+            // si il reste des places on lui propose de s'inscrire
+            <td class="myLinks">@Html.ActionLink("S'inscrire", "Inscription", "Adherents", new { id = creneau.Id }, new { @class = "btn btn-primary" })</td>
+        }
+    }
+    else
+    {
+
+        <td><span class="label label-success">Inscrit</span></td>
+
+    }
+
+</tr>
     }
 
 </table>
 <p class="myLinks">
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour", "index","Discipline")
 </p>

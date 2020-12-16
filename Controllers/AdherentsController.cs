@@ -48,11 +48,12 @@ namespace ProjetAssociationSports.Controllers
             return View(adherent);
         }
 
-        // GET: Adherents/Create
+   
      
         public ActionResult Create()
         {
             string user = User.Identity.GetUserId();
+            // si l'utilisateur est déja un adhérent on le redirige vers les détails de son adhésion
             if (db.Adherents.Any(a => a.Id == user))
             {
                 return RedirectToAction("Details");
@@ -60,9 +61,7 @@ namespace ProjetAssociationSports.Controllers
             return View();
         }
 
-        // POST: Adherents/Create
-        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         
@@ -151,23 +150,43 @@ namespace ProjetAssociationSports.Controllers
                  
             if(creneau == null)
             {
-                Response.Redirect(Request.UrlReferrer.ToString());
+                return new HttpNotFoundResult("ce creneau n'existe pas ");
             }
             if(adherent == null)
             {
-                return RedirectToAction("index", "Home");
+                TempData["erreur"] = "vous devez être adhérent pour pouvoir vous inscrire"; 
+                return RedirectToAction("create", "Adherents");
             }
             else
             {
+                if (creneau.NbrPlaceRestantes == 0)
+                {
+                    Response.Redirect(Request.UrlReferrer.ToString());
+                }
+                db.CreneauxAdherents.Find(adherent.Id, creneau.Id);
+                if (db.CreneauxAdherents.Find(adherent.Id, creneau.Id) != null)
+                {
+                    TempData["erreur"] = "vous êtes déja inscrit à ce créneau";
+                    RedirectToAction("VoirInscriptions");
+                }
                 adherent.ResteaPayer += creneau.Section.Prix;
-                creneau.Adherents.Add(adherent);
-                adherent.Creneaux.Add(creneau);
+                CreneauxAdherents c = new CreneauxAdherents
+                {
+                    AdherentID = adherent.Id,
+                    CreneauID = creneau.Id,
+                    estPaye = false
+
+                };
+                creneau.NbrPlaceRestantes--;
+                adherent.CreneauxAdherents.Add(c);
+                creneau.CreneauxAdherents.Add(c);
                 db.SaveChanges();
-                return RedirectToAction("Details");
+                TempData["message"] = "Inscription au créneau réussie";
+                return RedirectToAction("VoirInscriptions");
 
             }
         }
-
+        [HttpGet]
         public ActionResult VoirInscriptions()
         {
             Adherent adherent = db.Adherents.Find(User.Identity.GetUserId());
@@ -175,9 +194,47 @@ namespace ProjetAssociationSports.Controllers
             {
                 return RedirectToAction("create");
             }
-            return View(adherent.Creneaux);
+            return View(adherent.CreneauxAdherents);
         }
   
+        [HttpGet]
+        public ActionResult Payement(int idCreneau)
+        {
+            Adherent ad = db.Adherents.Find(User.Identity.GetUserId());
+            if(ad == null)
+            {
+                return RedirectToAction("create");
+            }
+            CreneauxAdherents c = db.CreneauxAdherents.Find(ad.Id, idCreneau);
+            if (c == null)
+            {
+                TempData["erreur"] = "Erreur vous n'êtes pas inscrit à ce créneau";
+                return RedirectToAction("VoirInscriptions");
+            }
+            return View(c);
+        }
+        [HttpGet]
+        public ActionResult Payer(int idCreneau)
+        {
+            Adherent ad = db.Adherents.Find(User.Identity.GetUserId());
+            if (ad == null)
+            {
+                return RedirectToAction("create");
+            }
+            CreneauxAdherents ca = db.CreneauxAdherents.Find(ad.Id, idCreneau);
+            if (ca == null)
+            {
+                TempData["erreur"] = "Erreur vous n'êtes pas inscrit à ce créneau";
+                return RedirectToAction("VoirInscriptions");
+            }
+            ca.estPaye = true;
+            ad.ResteaPayer -= ca.Creneau.Section.Prix; 
+            db.Entry(ad).State = EntityState.Modified;
+            db.Entry(ca).State = EntityState.Modified;
+            db.SaveChanges();
+            TempData["message"] = "Votre paiement a été bien été effectué";
+            return RedirectToAction("VoirInscriptions");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

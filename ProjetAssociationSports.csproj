@@ -47,10 +47,15 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.1.9, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>packages\SharpZipLib.1.3.1\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -173,6 +178,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdherentsController.cs" />
+    <Compile Include="Controllers\CreneauxController.cs" />
     <Compile Include="Controllers\DisciplineController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -186,10 +192,23 @@
     <Compile Include="Migrations\202012131512594_CreateDatabase.Designer.cs">
       <DependentUpon>202012131512594_CreateDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012152320160_rectificationCreneaux.cs" />
+    <Compile Include="Migrations\202012152320160_rectificationCreneaux.Designer.cs">
+      <DependentUpon>202012152320160_rectificationCreneaux.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012161857027_encandrement.cs" />
+    <Compile Include="Migrations\202012161857027_encandrement.Designer.cs">
+      <DependentUpon>202012161857027_encandrement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012162207215_rajoutLieuPourCreneau.cs" />
+    <Compile Include="Migrations\202012162207215_rajoutLieuPourCreneau.Designer.cs">
+      <DependentUpon>202012162207215_rajoutLieuPourCreneau.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Adherent.cs" />
     <Compile Include="Models\Creneau.cs" />
+    <Compile Include="Models\CreneauxAdherents.cs" />
     <Compile Include="Models\CustomValidation\DocumentValidateAttributes.cs" />
     <Compile Include="Models\CustomValidation\TypePieceValidation.cs" />
     <Compile Include="Models\Discipline.cs" />
@@ -260,22 +279,17 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Discipline\Create.cshtml" />
-    <Content Include="Views\Discipline\Delete.cshtml" />
     <Content Include="Views\Discipline\Details.cshtml" />
-    <Content Include="Views\Discipline\Edit.cshtml" />
     <Content Include="Views\Discipline\Index.cshtml" />
     <Content Include="Views\Adherents\Create.cshtml" />
     <Content Include="Views\Adherents\Details.cshtml" />
     <Content Include="Views\Adherents\Edit.cshtml" />
-    <Content Include="Views\Adherents\Index.cshtml" />
-    <Content Include="Views\Sections\Create.cshtml" />
-    <Content Include="Views\Sections\Delete.cshtml" />
     <Content Include="Views\Sections\Details.cshtml" />
-    <Content Include="Views\Sections\Edit.cshtml" />
     <Content Include="Views\Sections\Index.cshtml" />
     <Content Include="Views\Adherents\VoirInscriptions.cshtml" />
-    <Content Include="Views\Sections\Payement.cshtml" />
+    <Content Include="Views\Adherents\Payement.cshtml" />
+    <Content Include="Views\Creneaux\Encadrement.cshtml" />
+    <Content Include="Views\Creneaux\EncadrementInscrits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -296,6 +310,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202012131512594_CreateDatabase.resx">
       <DependentUpon>202012131512594_CreateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012152320160_rectificationCreneaux.resx">
+      <DependentUpon>202012152320160_rectificationCreneaux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012161857027_encandrement.resx">
+      <DependentUpon>202012161857027_encandrement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012162207215_rajoutLieuPourCreneau.resx">
+      <DependentUpon>202012162207215_rajoutLieuPourCreneau.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

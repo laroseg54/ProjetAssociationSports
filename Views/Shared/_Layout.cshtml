@@ -32,6 +32,10 @@
                     @*<li>@Html.ActionLink("À propos de", "About", "Home")</li>*@
                     <li>@Html.ActionLink("Voir nos discipline", "index", "Disciplines")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Encadrant"))
+                    {
+                        <li>@Html.ActionLink("Encadrement", "Encadrement", "Creneaux")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -24,6 +24,8 @@ namespace ProjetAssociationSports.dal
         public virtual DbSet<Adherent> Adherents { get; set; }
 
         public virtual DbSet<Document> Documents { get; set; }
+
+        public virtual DbSet<CreneauxAdherents> CreneauxAdherents { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

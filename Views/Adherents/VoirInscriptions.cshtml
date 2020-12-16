@@ -1,9 +1,22 @@
-﻿@model IEnumerable<ProjetAssociationSports.Models.Creneau>
+﻿@model IEnumerable<ProjetAssociationSports.Models.CreneauxAdherents>
 @{
     ViewBag.Title = "VoirInscriptions";
+    var culture = new System.Globalization.CultureInfo("fr-FR"); // pour mettre l'énumération day of week en Francais
 }
 
 @Html.ActionLink("Retour", "Details")
+@if (@TempData["message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["message"]
+    </div>
+}
+@if (@TempData["erreur"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["erreur"]
+    </div>
+}
 <h2>Les créneaux auquels vous êtes inscrits</h2>
 
 <table class="table">
@@ -14,21 +27,32 @@
             <th scope="col">Jour</th>
             <th scope="col">Heure de début</th>
             <th scope="col">Heure de fin</th>
+            <th scope="col">Lieu</th>
+            <th scope="col">Prix</th>
             <th scope="col">Payement</th>
 
         </tr>
     </thead>
-    @foreach (var creneau in Model)
+    @foreach (var creneauAdh in Model)
     {
-        <tr scope="row">
-            <td>@creneau.Section.Discipline.Nom</td>
-            <td>@creneau.Section.Nom</td>
-            <td>@creneau.Jour</td>
-            <td>@creneau.HeureDeb</td>
-            <td>@creneau.HeureFin</td>
-            <td class="myLinks">150euro @Html.ActionLink("Payer", "Payement", "Sections")</td>
-          
-        </tr>
+<tr scope="row">
+    <td>@creneauAdh.Creneau.Section.Discipline.Nom</td>
+    <td>@creneauAdh.Creneau.Section.Nom</td>
+    <td>@culture.DateTimeFormat.GetDayName(creneauAdh.Creneau.Jour)</td>
+    <td>@creneauAdh.Creneau.HeureDeb</td>
+    <td>@creneauAdh.Creneau.HeureFin</td>
+    <td>@creneauAdh.Creneau.Lieu</td>
+    <td>@creneauAdh.Creneau.Section.Prix</td>
+    <td class="myLinks">
+        @if (creneauAdh.estPaye == false)
+        {
+            // Si l'adhérent n'a pas encore payé pour ce cours , on lui propose de le faire 
+            @Html.ActionLink("Payer", "Payement", new { idCreneau = creneauAdh.CreneauID })}
+        else
+        { <span class="label label-success">fait</span>}
+    </td>
+
+</tr>
     }
 
 </table>

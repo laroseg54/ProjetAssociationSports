@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProjetAssociationSports.Models.CreneauxAdherents>
+@{
+    ViewBag.Title = "VoirInscriptions";
+    var culture = new System.Globalization.CultureInfo("fr-FR");
+}
+
+@Html.ActionLink("Retour", "Encadrement")
+
+<h2>Les créneaux auquels vous êtes inscrits</h2>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th colspan="2">email</th>
+            <th scope="col">Date de naissance</th>
+            <th scope="col">Documents</th>
+            <th scope="col">Paiement Fait</th>
+
+        </tr>
+    </thead>
+    @foreach (var creneauAdh in Model)
+    {
+        <tr scope="row">
+            <td>@creneauAdh.Adherent.Nom</td>
+            <td>@creneauAdh.Adherent.Prenom</td>
+            <td colspan="2"><a href="mailto:@creneauAdh.Adherent.ApplicationUser.Email">@creneauAdh.Adherent.ApplicationUser.Email</a></td>
+            <td>@creneauAdh.Adherent.DateNaissance.ToString("dd/MM/yyyy")</td>
+            <td >
+                @if (creneauAdh.Adherent.Documents.Count > 0)
+                {
+                    // l'encadre peut telecharger les documents mise en ligne par l'adhérent pour vérifier qu'ils sont conformes 
+                    @Html.ActionLink("Telecharger","Telecharger","Documents",new { adherentId = creneauAdh.AdherentID },null)
+                }
+                else
+                {
+                    @:Vide  
+                }
+
+            </td>
+            <td>
+                @if (creneauAdh.estPaye)
+                {
+                    <span class='label label-success'>Oui</span>
+                }
+                else
+                {
+                    <span class='label label-warning'>Non</span>
+                }
+
+            </td>
+
+        </tr>
+    }
+
+</table>
+

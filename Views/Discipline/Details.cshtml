@@ -4,46 +4,38 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+
 
 <div>
-    <h4>Discipline</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nom)
-        </dt>
+    <h1 class="display-1"> @Html.DisplayFor(model => model.Nom)</h1>
+        <hr />
+        <dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.Nom)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
 
-    </dl>
+        </dl>
 
-    <table class="table">
-        <tr>
-            <th></th>
-        </tr>
+        <table class="table">
+            <tr>
+                <th></th>
+            </tr>
 
-        @foreach (var Section in Model.Sections)
-        {
-            <tr><td class="section">@Section.Nom</td></tr>
-            <tr><td class="section">@Section.Description</td></tr>
-            <tr><td class="myLinks" id="test">@Html.ActionLink("Voir les creneaux","Details","Sections",new { id = Section.Id },null)</td></tr>
-        }
+            @foreach (var Section in Model.Sections)
+            {
+                <tr><td class="section">@Section.Nom</td></tr>
+                <tr><td class="section">@Section.Description</td></tr>
+                <tr><td class="myLinks" id="test">@Html.ActionLink("Voir les creneaux", "Details", "Sections", new { id = Section.Id }, null)</td></tr>
+            }
 
-    </table>
+        </table>
 </div>
 <p class="myLinks">
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour", "Index","Home")
 </p>
